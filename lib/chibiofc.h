@@ -1,5 +1,6 @@
-#include <cstdint>
 #include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
 
 typedef struct ofp_header ofp_header;
 struct ofp_header {
@@ -7,6 +8,12 @@ struct ofp_header {
     uint8_t type;
     uint16_t length;
     uint32_t xid;
+};
+
+typedef struct ofp_data ofp_data;
+struct ofp_data {
+    unsigned char *data;
+    uint16_t length;
 };
 
 typedef enum {
@@ -46,4 +53,6 @@ typedef enum {
     OFPT_CONTROLLER_STATUS,
 } ofp_type;
 
-
+int run(int tcp_port);
+ofp_header *create_ofp_header(uint8_t type, uint16_t length);
+ofp_data *parse_ofpt_hello(const unsigned char *msg);
