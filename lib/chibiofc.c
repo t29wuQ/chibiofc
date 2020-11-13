@@ -35,6 +35,12 @@ ofp_data *parse_ofp_header(unsigned char *msg) {
             type = OFPT_HELLO;
             data = parse_ofpt_hello(msg);
             break;
+        case OFPT_ECHO_REQUEST:
+            type = OFPT_ECHO_REPLY;
+            data = parse_ofpt_echo_request(msg);
+            data->length = header->length - 8;
+            data->length = htons(data->length);
+            break;
         default:
             fprintf(stderr, "hello");
             res->data = NULL;

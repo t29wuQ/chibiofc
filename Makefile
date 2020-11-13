@@ -4,3 +4,7 @@ OBJS=$(SRCS: .c=.o)
 
 chibiofc: $(OBJS)
 	  $(CC) -o chibiofc $(OBJS) $(LDFLAGS)
+
+test: chibiofc
+	./chibiofc
+	

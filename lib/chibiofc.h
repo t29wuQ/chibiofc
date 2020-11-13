@@ -57,3 +57,4 @@ typedef enum {
 int run(int tcp_port);
 ofp_header *create_ofp_header(uint8_t type, uint16_t length);
 ofp_data *parse_ofpt_hello(const unsigned char *msg);
+ofp_data *parse_ofpt_echo_request(unsigned char *msg);
