@@ -3,7 +3,6 @@
 #include <unistd.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-#include <arpa/inet.h>
 #include <signal.h>
 
 static uint32_t xid;
@@ -15,7 +14,7 @@ ofp_header *create_ofp_header(uint8_t type, uint16_t length) {
     header->length = 8 + length;
     header->length = htons(header->length);
     header->xid = xid;
-    header->xid = htons(header->xid);
+    header->xid = htonl(header->xid);
     return header;
 }
 

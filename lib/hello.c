@@ -25,7 +25,9 @@ ofp_hello_elem_versionbitmap *create_ofpt_hello() {
     ofp_hello_elem_versionbitmap *elem = malloc(sizeof(ofp_hello_elem_versionbitmap));
     elem->type = OFPHET_VERSIONBITMAP;
     elem->length = 8;
+    elem->length = htons(elem->length);
     elem->bitmap = 0x40; // OpenFlow1.5 only
+    elem->bitmap = htonl(elem->bitmap);
     return elem;
 }
 
